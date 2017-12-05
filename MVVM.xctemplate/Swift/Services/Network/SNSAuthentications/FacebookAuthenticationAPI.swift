@@ -14,7 +14,6 @@ import Alamofire
 import RxSwift
 
 enum FacebookError: Error {
-
     case cancelled
     case loginFailed(Error)
     case cannotGetInfo
@@ -25,19 +24,18 @@ extension FacebookError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .cancelled:
-            return "The login was cancelled by the user".localized
+            return "The login was cancelled by the user"
 
         case .loginFailed(let error):
             return error.localizedDescription
 
         case .cannotGetInfo:
-            return "Failed to to get facebook information".localized
+            return "Failed to to get facebook information"
         }
     }
 }
 
-class FacebookAuthenticationAPI: APIBase {
-
+class FacebookAuthenticationAPI {
     class func requestFacebookPermission(fromViewController viewController: UIViewController) -> Observable<Void> {
         let permision = ["public_profile", "email"]
         let loginManager = FBSDKLoginManager()
@@ -46,11 +44,12 @@ class FacebookAuthenticationAPI: APIBase {
             loginManager.logIn(withReadPermissions: permision, from: viewController) { (result, error) in
                 if let error = error {
                     observer.onError(FacebookError.loginFailed(error))
+
                 } else {
                     if result?.isCancelled == true {
                         observer.onError(FacebookError.cancelled)
+
                     } else {
-                        // Success case
                         observer.onNext(())
                     }
                 }
@@ -62,16 +61,17 @@ class FacebookAuthenticationAPI: APIBase {
         }
     }
 
-    // TODO: Change return type
-    class func getFacebookUser() -> Observable<String> {
+    /** Return Facebook token */
+    class func getFacebookUserToken() -> Observable<String> {
         let param = ["fields": "id, name, email, birthday, first_name, last_name, picture.type(large)"]
         guard let request = FBSDKGraphRequest(graphPath: "me", parameters: param) else {
             return Observable<String>.error(FacebookError.cannotGetInfo)
         }
         return Observable<String>.create { (observer) -> Disposable in
-            request.start { (connection, result, error) in
+            request.start { (_, result, error) in
                 if let error = error {
                     observer.onError(FacebookError.loginFailed(error))
+
                 } else {
                     guard let json = result as? [String: Any], let token = FBSDKAccessToken.current().tokenString else { return }
 
@@ -79,13 +79,12 @@ class FacebookAuthenticationAPI: APIBase {
                         return observer.onError(FacebookError.cannotGetInfo)
                     }
 
-                    let pictureDict =  json["picture"] as? [String: Any]
+                    let pictureDict = json["picture"] as? [String: Any]
                     let pictureData = pictureDict?["data"] as? [String: Any]
                     let pictureURL = pictureData?["url"] as? String
 
-                    // TEST
                     #if DEBUG
-                        debugLog("Token \(token), email \(email), profile picture \(pictureURL ?? "emptyURL")")
+                        debugPrint("Token \(token), email \(email), profile picture \(pictureURL ?? "emptyURL")")
                     #endif
 
                     observer.onNext(token)
