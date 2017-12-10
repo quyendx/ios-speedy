@@ -8,3 +8,10 @@
 3. [Xcode Custom Project Templates: Advance](https://blog.showoff.ie/xcode-custom-project-templates-advance-5ac92a0f4672)
 
 4. [Xcode 8 Templates](http://samwize.com/2017/05/12/xcode-8-file-templates/)
+
+## Installation
+
+1. Copy `MVVM.xctemplate` to `~/Library/Developer/Xcode/Templates/Project Templates /` and restart your Xcode
+2. Create the new Xcode project as usual, scroll down and select `MVVM` in `Project Templates` section
+3. Fill project information
+4. 👩‍💻👩‍💻
