@@ -9,6 +9,8 @@
 
 4. [Xcode 8 Templates](http://samwize.com/2017/05/12/xcode-8-file-templates/)
 
+5. [🔖 Xcode 4 Template Documentation](http://files.cnblogs.com/files/dongzee/Documentation.pdf)
+
 ## Installation
 
 1. Copy `MVVM.xctemplate` to `~/Library/Developer/Xcode/Templates/Project Templates /` and restart your Xcode
