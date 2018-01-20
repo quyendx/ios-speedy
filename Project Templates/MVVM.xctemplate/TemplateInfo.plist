@@ -2,9 +2,32 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Kind</key>
+	<string>Xcode.Xcode3.ProjectTemplateUnitKind</string>
+	<key>Concrete</key>
+	<true/>
+	<key>ProjectOnly</key>
+	<true/>
+	<key>Identifier</key>
+	<string>com.innovatube.template.iosBase.MVVM</string>
+	<key>Description</key>
+	<string>This template provides a starting point for an application that uses a single view. It provides a view controller to manage the view, and a storyboard or nib file that contains the view.</string>
+	<key>Platforms</key>
+	<array>
+		<string>com.apple.platform.iphoneos</string>
+	</array>
+	<key>Ancestors</key>
+	<array>
+		<string>com.apple.dt.unit.iosBase</string>
+		<string>com.innovatube.template.unit.bundleBase</string>
+	</array>
 	<key>Targets</key>
 	<array>
 		<dict>
+			<key>ProductType</key>
+			<string>com.apple.product-type.application</string>
+			<key>TargetIdentifier</key>
+			<string>com.apple.dt.cocoaTouchApplicationTarget</string>
 			<key>BuildPhases</key>
 			<array>
 				<dict>
@@ -17,60 +40,14 @@
 					<key>ShellScript</key>
 					<string>&quot;${PODS_ROOT}/SwiftLint/swiftlint&quot;</string>
 				</dict>
-				<dict>
-					<key>Class</key>
-					<string>Sources</string>
-				</dict>
-				<dict>
-					<key>Class</key>
-					<string>Frameworks</string>
-				</dict>
-				<dict>
-					<key>Class</key>
-					<string>Resources</string>
-				</dict>
 			</array>
-			<key>ProductType</key>
-			<string>com.apple.product-type.application</string>
 			<key>SharedSettings</key>
 			<dict>
 				<key>SWIFT_OBJC_BRIDGING_HEADER</key>
 				<string>$(PROJECT_NAME)/Application/___PACKAGENAMEASIDENTIFIER___-Bridging-Header.h</string>
 			</dict>
-			<key>TargetIdentifier</key>
-			<string>com.apple.dt.cocoaTouchApplicationTarget</string>
 		</dict>
 	</array>
-	<key>Ancestors</key>
-	<array>
-		<string>com.apple.dt.unit.applicationBase</string>
-		<string>com.apple.dt.unit.iosBase</string>
-	</array>
-	<key>Kind</key>
-	<string>Xcode.Xcode3.ProjectTemplateUnitKind</string>
-	<key>Concrete</key>
-	<true/>
-	<key>Identifier</key>
-	<string>com.innovatube.template.project.MVVM</string>
-	<key>Description</key>
-	<string>This template provides a starting point for an application that uses a single view. It provides a view controller to manage the view, and a storyboard or nib file that contains the view.</string>
-	<key>Platforms</key>
-	<array>
-		<string>com.apple.platform.iphoneos</string>
-	</array>
-	<key>Project</key>
-	<dict>
-		<key>Configurations</key>
-		<dict>
-			<key>Debug</key>
-			<dict>
-				<key>GCC_INSTRUMENT_PROGRAM_FLOW_ARCS</key>
-				<string>YES</string>
-				<key>GCC_GENERATE_TEST_COVERAGE_FILES</key>
-				<string>YES</string>
-			</dict>
-		</dict>
-	</dict>
 	<key>Options</key>
 	<array>
 		<dict>
@@ -298,20 +275,15 @@
 			<dict>
 				<key>Universal</key>
 				<dict>
-					<key>Definitions</key>
-					<dict>
-						<key>Images.xcassets</key>
-						<dict>
-							<key>Path</key>
-							<string>Images-Universal.xcassets</string>
-							<key>SortOrder</key>
-							<integer>100</integer>
-						</dict>
-					</dict>
-					<key>Nodes</key>
+					<key>Targets</key>
 					<array>
-						<string>Info.plist:UISupportedInterfaceOrientations~iPhone</string>
-						<string>Info.plist:UISupportedInterfaceOrientations~iPad</string>
+						<dict>
+							<key>SharedSettings</key>
+							<dict>
+								<key>TARGETED_DEVICE_FAMILY</key>
+								<string>1,2</string>
+							</dict>
+						</dict>
 					</array>
 					<key>Project</key>
 					<dict>
@@ -324,19 +296,15 @@
 				</dict>
 				<key>iPad</key>
 				<dict>
-					<key>Definitions</key>
-					<dict>
-						<key>Images.xcassets</key>
-						<dict>
-							<key>Path</key>
-							<string>Images-iPad.xcassets</string>
-							<key>SortOrder</key>
-							<integer>100</integer>
-						</dict>
-					</dict>
-					<key>Nodes</key>
+					<key>Targets</key>
 					<array>
-						<string>Info.plist:UISupportedInterfaceOrientations~iPad</string>
+						<dict>
+							<key>SharedSettings</key>
+							<dict>
+								<key>TARGETED_DEVICE_FAMILY</key>
+								<string>2</string>
+							</dict>
+						</dict>
 					</array>
 					<key>Project</key>
 					<dict>
@@ -349,20 +317,24 @@
 				</dict>
 				<key>iPhone</key>
 				<dict>
-					<key>Definitions</key>
-					<dict>
-						<key>Images.xcassets</key>
+					<key>Targets</key>
+					<array>
 						<dict>
-							<key>Path</key>
-							<string>Images-iPhone.xcassets</string>
-							<key>SortOrder</key>
-							<integer>100</integer>
+							<key>SharedSettings</key>
+							<dict>
+								<key>TARGETED_DEVICE_FAMILY</key>
+								<string>1</string>
+							</dict>
+						</dict>
+					</array>
+					<key>Project</key>
+					<dict>
+						<key>SharedSettings</key>
+						<dict>
+							<key>TARGETED_DEVICE_FAMILY</key>
+							<string>1</string>
 						</dict>
 					</dict>
-					<key>Nodes</key>
-					<array>
-						<string>Info.plist:UISupportedInterfaceOrientations~iPhone</string>
-					</array>
 				</dict>
 			</dict>
 		</dict>
@@ -498,10 +470,10 @@ end
 							<key>Group</key>
 							<string>Application</string>
 						</dict>
-						<key>Common</key>
+						<key>Common/Macro.swift</key>
 						<dict>
 							<key>Path</key>
-							<string>Common</string>
+							<string>Swift/Common/Macro.swift</string>
 							<key>Group</key>
 							<array>
 								<string>Common</string>
@@ -527,10 +499,8 @@ end
 						</dict>
 						<key>Libraries</key>
 						<dict>
-							<key>TargetIndices</key>
-							<array/>
 							<key>Path</key>
-							<string>Libraries</string>
+							<string>Swift/Libraries</string>
 							<key>PathType</key>
 							<string>Group</string>
 							<key>Group</key>
@@ -540,10 +510,12 @@ end
 						</dict>
 						<key>Models</key>
 						<dict>
-							<key>TargetIndices</key>
-							<array/>
 							<key>Path</key>
-							<string>Models</string>
+							<string>Swift/Models</string>
+							<key>Group</key>
+							<array>
+								<string>Models</string>
+							</array>
 							<key>PathType</key>
 							<string>Group</string>
 						</dict>
@@ -609,8 +581,6 @@ end
 						<dict>
 							<key>Path</key>
 							<string>Swift/Services/Network/PaginationAPI.swift</string>
-							<key>New item</key>
-							<string></string>
 							<key>Group</key>
 							<array>
 								<string>Services</string>
@@ -760,6 +730,8 @@ end
 						</dict>
 						<key>Resources/Fonts</key>
 						<dict>
+							<key>Path</key>
+							<string>Swift/Resources/Fonts</string>
 							<key>Group</key>
 							<array>
 								<string>Resources</string>
@@ -788,6 +760,8 @@ end
 						</dict>
 						<key>Resources/Strings</key>
 						<dict>
+							<key>Path</key>
+							<string>Swift/Resources/Strings</string>
 							<key>Group</key>
 							<array>
 								<string>Resources</string>
@@ -854,7 +828,7 @@ end
 						<string>Info.plist:UIViewControllerBasedStatusBarAppearance</string>
 						<string>Application/AppDelegate.swift</string>
 						<string>Application/___PACKAGENAMEASIDENTIFIER___-Bridging-Header.h</string>
-						<string>Common</string>
+						<string>Common/Macro.swift</string>
 						<string>Configurations/Configuration.swift</string>
 						<string>Configurations/Enums.swift</string>
 						<string>Libraries</string>
