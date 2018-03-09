@@ -13,7 +13,10 @@
 
 ## Installation
 
-1. Copy `MVVM.xctemplate` to `~/Library/Developer/Xcode/Templates/Project Templates /` and restart your Xcode
+![Template](https://github.com/quyendx/ios-speedy/blob/develop/Template.gif)
+
+1. Copy `MVVM.xctemplate` and `Bundle Base.xctemplate` to `~/Library/Developer/Xcode/Templates/Project Templates /` and restart your Xcode
 2. Create the new Xcode project as usual, scroll down and select `MVVM` in `Project Templates` section
 3. Fill project information
-4. 👩‍💻👩‍💻
+4. Goes to project folder, then run `pod install`
+5. 👩‍💻👩‍💻
