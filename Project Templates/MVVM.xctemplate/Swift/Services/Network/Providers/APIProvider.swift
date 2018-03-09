@@ -10,27 +10,36 @@ import Alamofire
 import Moya
 import RxSwift
 
-extension TargetType {
+class APIProvider<Target> where Target: Moya.TargetType {
 
-    var rawTarget: TargetType {
+    private let online: Observable<Bool>
+    private let provider: MoyaProvider<Target>
 
-        if let multiTarget = self as? MultiTarget {
-            return multiTarget.target
-        }
-        return self
+    init(endpointClosure: @escaping MoyaProvider<Target>.EndpointClosure = MoyaProvider.defaultEndpointMapping,
+         requestClosure: @escaping MoyaProvider<Target>.RequestClosure = MoyaProvider.defaultRequestMapping,
+         stubClosure: @escaping MoyaProvider<Target>.StubClosure = MoyaProvider.neverStub,
+         manager: Manager = MoyaProvider<Target>.defaultAlamofireManager(),
+         plugins: [PluginType] = [],
+         trackInflights: Bool = false,
+         online: Observable<Bool> = .just(true)) {
+
+        self.online = online
+        self.provider = MoyaProvider(endpointClosure: endpointClosure, requestClosure: requestClosure, stubClosure: stubClosure, manager: manager, plugins: plugins, trackInflights: trackInflights)
+    }
+
+    func request(_ token: Target) -> Observable<Moya.Response> {
+        let actualRequest = provider.rx.request(token)
+        return online
+            .skipWhile { !$0 }
+            .take(1)
+            .flatMap { _ in
+                return actualRequest
+            }
     }
 }
 
-class APIProvider: MoyaProvider<MultiTarget> {
+protocol APIType {
+    associatedtype T: APITargetType
 
-    override init(endpointClosure: @escaping EndpointClosure = MoyaProvider.defaultEndpointMapping,
-                  requestClosure: @escaping RequestClosure = MoyaProvider.defaultRequestMapping,
-                  stubClosure: @escaping StubClosure = MoyaProvider.neverStub,
-                  callbackQueue: DispatchQueue? = nil,
-                  manager: Manager = MoyaProvider<MultiTarget>.defaultAlamofireManager(),
-                  plugins: [PluginType] = [BasicAuthenticationPlugin(), NetworkErrorTransformPlugin(), NetworkErrorLogger(), NetworkActivityPlugin(networkActivityClosure: { (type, _) in UIApplication.shared.isNetworkActivityIndicatorVisible = type == .began })],
-                  trackInflights: Bool = false) {
-
-        super.init(endpointClosure: endpointClosure, requestClosure: requestClosure, stubClosure: stubClosure, callbackQueue: callbackQueue, manager: manager, plugins: plugins, trackInflights: trackInflights)
-    }
+    var provider: APIProvider<T> { get }
 }

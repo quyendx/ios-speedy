@@ -10,20 +10,20 @@ struct Configuration {
     
 }
 
-struct ___PROJECTNAME___ClientAPI {
+struct ___PROJECTNAME___ClientAPIKeys {
     #if DEBUG
-        let basePath = ""
-        let clientID = ""
-        let clientSecret = ""
+        static let basePath = ""
+        static let clientID = ""
+        static let clientSecret = ""
 
     #elseif STAGGING
-        let basePath = ""
-        let clientID = ""
-        let clientSecret = ""
+        static let basePath = ""
+        static let clientID = ""
+        static let clientSecret = ""
 
     #elseif RELEASE
-        let basePath = ""
-        let clientID = ""
-        let clientSecret = ""
+        static let basePath = ""
+        static let clientID = ""
+        static let clientSecret = ""
     #endif
 }

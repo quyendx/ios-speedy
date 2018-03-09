@@ -50,14 +50,6 @@ class ApplicationNavigationController: UINavigationController {
     }
 
     private func configAppearance() {
-        // Appearance
-        navigationBar.barTintColor = UIColor(hex: 0x4688F1)
-        navigationBar.tintColor = UIColor.white
-
-        // Localized
-        let font = UIFont.systemFont(ofSize: 14)
-        navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: font]
-
-        navigationBar.isTranslucent = false
+        // Add UINavigation configuration codes
     }
 }

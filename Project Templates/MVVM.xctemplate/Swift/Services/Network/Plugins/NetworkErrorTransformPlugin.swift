@@ -1,9 +1,9 @@
 //
 //  ServerErrorPlugin.swift
-// 
+//  ___PROJECTNAME___
 //
-//  Created by Dang Thai Son on 7/4/17.
-//  Copyright © 2017 Innovatube. All rights reserved.
+//  Created by ___FULLUSERNAME___ on ___DATE___.
+//  ___COPYRIGHT___
 //
 
 import Foundation

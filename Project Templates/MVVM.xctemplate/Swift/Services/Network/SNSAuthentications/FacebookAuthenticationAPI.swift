@@ -75,7 +75,7 @@ class FacebookAuthenticationAPI {
                 } else {
                     guard let json = result as? [String: Any], let token = FBSDKAccessToken.current().tokenString else { return }
 
-                    guard let email = json["email"] as? String, email.length > 0 else {
+                    guard let email = json["email"] as? String, email.isNotEmpty else {
                         return observer.onError(FacebookError.cannotGetInfo)
                     }
 

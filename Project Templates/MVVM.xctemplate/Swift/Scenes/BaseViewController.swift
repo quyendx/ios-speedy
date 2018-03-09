@@ -43,4 +43,3 @@ class BaseViewController: UIViewController {
     }
 
 }
-

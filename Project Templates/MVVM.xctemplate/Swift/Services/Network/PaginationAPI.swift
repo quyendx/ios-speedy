@@ -1,9 +1,9 @@
 //
 //  PaginationAPI.swift
-// 
+//  ___PROJECTNAME___
 //
-//  Created by Dang Thai Son on 7/6/17.
-//  Copyright © 2017 Innovatube. All rights reserved.
+//  Created by ___FULLUSERNAME___ on ___DATE___.
+//  ___COPYRIGHT___
 //
 
 import Foundation
@@ -38,9 +38,9 @@ class PaginationAPI<ResponseType: PaginationResponse> {
     let loadNextTrigger: PublishSubject<Void> = PublishSubject()
 
     // Output
-    var elements: Observable<[ResponseType.Element]> { return self.requestAction.elements.map { Array($0.items) } }
-    var errors: Observable<Swift.Error> { return self.requestAction.errors.map { $0.underlyingError }.filterNil() }
-    var loading: Observable<Bool> { return self.requestAction.executing }
+    var elements: Observable<[ResponseType.Element]> { return requestAction.elements.map { Array($0.items) } }
+    var errors: Observable<Swift.Error> { return requestAction.errors.map { $0.underlyingError }.filterNil() }
+    var loading: Observable<Bool> { return requestAction.executing }
 
     // Private
     private let request: PaginationRequest

@@ -1,15 +1,14 @@
 //
 //  TokenKeychainStore.swift
+//  ___PROJECTNAME___
 //
-//  Created by Dang Thai Son on 5/19/17.
-//  Copyright © 2017 Innovatube. All rights reserved.
+//  Created by ___FULLUSERNAME___ on ___DATE___.
+//  ___COPYRIGHT___
 //
 
 import Foundation
 import KeychainAccess
 import RxSwift
-
-private let appName: String = (Bundle.main.infoDictionary?[kCFBundleNameKey as String] as? String) ?? "AppName"
 
 private let usernameKey = "AuthUsername"
 private let passwordKey = "AuthPassword"
@@ -23,9 +22,11 @@ struct TokenKeychainStore {
     private let tokenSubject = PublishSubject<AccessToken>()
     private let keychain: Keychain
 
+    // swiftlint:disable force_unwrapping
     init(keychain: Keychain = Keychain(service: Bundle.main.bundleIdentifier!)) {
         self.keychain = keychain
     }
+    // swiftlint:enable force_unwrapping
 
     func store(token: AccessToken) {
         keychain[usernameKey] = token.username

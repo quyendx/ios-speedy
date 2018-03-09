@@ -30,15 +30,15 @@ class IntStringTransform: TransformType {
 }
 
 class ListTransform<T: Mappable>: TransformType {
-    typealias Object = Array<T>
+    typealias Object = [T]
     typealias JSON = [AnyObject]
 
     let mapper = Mapper<T>()
 
-    func transformFromJSON(_ value: Any?) -> Array<T>? {
+    func transformFromJSON(_ value: Any?) -> [T]? {
         guard let jsons = value as? [AnyObject] else { return nil }
         let objects = jsons.map { mapper.map(JSONObject: $0) }.flatMap { $0 }
-        return Array<T>(objects)
+        return objects
     }
 
     func transformToJSON(_ value: Object?) -> JSON? {

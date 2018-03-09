@@ -35,15 +35,6 @@ class DataStore<T: Object> {
         }
     }
 
-    static var currentUser: User {
-        let predicate = NSPredicate(format: "id=%d", UserDefaults.currentUserID)
-        if let user = realm.objects(User.self).filter(predicate).first {
-            return user
-        }
-
-        fatalError("User can't be nil")
-    }
-
     class func objects(type: T.Type) -> Results<T> {
         return realm.objects(T.self)
     }
@@ -104,7 +95,7 @@ class DataStore<T: Object> {
                     realm.deleteAll()
                 }
             } catch {
-                debugLog(error.localizedDescription)
+                debugPrint(error.localizedDescription)
             }
 
         }
