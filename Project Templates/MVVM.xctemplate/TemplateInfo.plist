@@ -259,6 +259,51 @@
 			</dict>
 		</dict>
 		<dict>
+			<key>SortOrder</key>
+			<integer>105</integer>
+			<key>Identifier</key>
+			<string>Realm</string>
+			<key>Name</key>
+			<string>Include Realm database</string>
+			<key>Description</key>
+			<string>Adds Realm pod to the default Podfile</string>
+			<key>Type</key>
+			<string>checkbox</string>
+			<key>Default</key>
+			<string>false</string>
+			<key>NotPersisted</key>
+			<true/>
+			<key>Units</key>
+			<dict>
+				<key>true</key>
+				<dict>
+					<key>Definitions</key>
+					<dict>
+						<key>Services/Local/DataStore.swift</key>
+						<dict>
+							<key>Path</key>
+							<string>Swift/Services/Local/DataStore.swift</string>
+							<key>Group</key>
+							<array>
+								<string>Services</string>
+								<string>Local</string>
+							</array>
+						</dict>
+						<key>../Podfile: RealmSwift</key>
+						<string>pod &apos;RealmSwift&apos;, &apos;~&gt; 3.0&apos;</string>
+						<key>../Podfile: RxRealm</key>
+						<string>pod &apos;RxRealm&apos;</string>
+					</dict>
+					<key>Nodes</key>
+					<array>
+						<string>Services/Local/DataStore.swift</string>
+						<string>../Podfile: RealmSwift</string>
+						<string>../Podfile: RxRealm</string>
+					</array>
+				</dict>
+			</dict>
+		</dict>
+		<dict>
 			<key>Default</key>
 			<string>Universal</string>
 			<key>Description</key>
@@ -394,24 +439,26 @@ def shared_pods
 
     # UI
     pod &apos;PINRemoteImage/PINCache&apos;, &apos;=3.0.0-beta.13&apos;
-
-    # Chat
-    # pod &apos;MessageKit&apos; # A community-driven replacement for JSQMessagesViewController
-    # pod &apos;NMessenger&apos;, &apos;~&gt; 1.0&apos; # NMessenger is a eBay&apos;s chat opensource build on Texture
-
-    # Database
-    pod &apos;RealmSwift&apos;, &apos;~&gt; 3.0&apos;
-    pod &apos;RxRealm&apos;
-					</string>
+</string>
 							<key>End</key>
 							<string>
-
-	# KeychainAccess
+    # KeychainAccess
     pod &apos;KeychainAccess&apos;
 
     # Style and conventions
-    pod &apos;SwiftLint&apos;, &apos;~&gt; 0.23.0&apos;
+    pod &apos;SwiftLint&apos;, &apos;~&gt; 0.23&apos;
+
 end
+
+def testing_pods
+    pod &apos;Quick&apos;
+    pod &apos;Nimble&apos;
+    pod &apos;Nimble-Snapshots&apos;
+    pod &apos;FBSnapshotTestCase&apos;
+    pod &apos;RxBlocking&apos;, &apos;~&gt; 4.0&apos;
+    pod &apos;RxTest&apos;,     &apos;~&gt; 4.0&apos;
+end
+
 target &apos;___VARIABLE_productName___&apos; do
     use_frameworks!
     inhibit_all_warnings!
@@ -434,6 +481,7 @@ target &apos;___VARIABLE_productName___&apos; do
     target &apos;___VARIABLE_productName___Tests&apos; do
         inherit! :search_paths
         # Pods for testing
+        testing_pods
 
     end
 
@@ -444,9 +492,9 @@ target &apos;___VARIABLE_productName___&apos; do
     end
 
 end
-							</string>
+</string>
 						</dict>
-						<key>Info.plist</key>
+						<key>Application/Info.plist</key>
 						<dict>
 							<key>Group</key>
 							<string>Application</string>
@@ -492,7 +540,7 @@ end
 							<key>Path</key>
 							<string>Swift/Libraries</string>
 							<key>PathType</key>
-							<string>Group</string>
+							<string>Folder</string>
 							<key>Group</key>
 							<array>
 								<string>Libraries</string>
@@ -518,10 +566,10 @@ end
 								<string>SwiftStdlib</string>
 							</array>
 						</dict>
-						<key>Extensions/UIKit/UIScrollViewExtensions.swift</key>
+						<key>Extensions/UIKit/UICollectionViewExtensions.swift</key>
 						<dict>
 							<key>Path</key>
-							<string>Swift/Extensions/UIKit/UIScrollViewExtensions.swift</string>
+							<string>Swift/Extensions/UIKit/UICollectionViewExtensions.swift</string>
 							<key>Group</key>
 							<array>
 								<string>Extensions</string>
@@ -538,10 +586,60 @@ end
 								<string>UIKit</string>
 							</array>
 						</dict>
-						<key>Extensions/Reactive/ReactiveExtensions.swift</key>
+						<key>Extensions/UIKit/UIColorExtensions.swift</key>
 						<dict>
 							<key>Path</key>
-							<string>Swift/Extensions/Reactive/ReactiveExtensions.swift</string>
+							<string>Swift/Extensions/UIKit/UIColorExtensions.swift</string>
+							<key>Group</key>
+							<array>
+								<string>Extensions</string>
+								<string>UIKit</string>
+							</array>
+						</dict>
+						<key>Extensions/UIKit/UITableViewExtensions.swift</key>
+						<dict>
+							<key>Path</key>
+							<string>Swift/Extensions/UIKit/UITableViewExtensions.swift</string>
+							<key>Group</key>
+							<array>
+								<string>Extensions</string>
+								<string>UIKit</string>
+							</array>
+						</dict>
+						<key>Extensions/UIKit/UITextFieldExtensions.swift</key>
+						<dict>
+							<key>Path</key>
+							<string>Swift/Extensions/UIKit/UITextFieldExtensions.swift</string>
+							<key>Group</key>
+							<array>
+								<string>Extensions</string>
+								<string>UIKit</string>
+							</array>
+						</dict>
+						<key>Extensions/UIKit/UIWindowExtensions.swift</key>
+						<dict>
+							<key>Path</key>
+							<string>Swift/Extensions/UIKit/UIWindowExtensions.swift</string>
+							<key>Group</key>
+							<array>
+								<string>Extensions</string>
+								<string>UIKit</string>
+							</array>
+						</dict>
+						<key>Extensions/Reactive/ReactiveCollectionViewCell.swift</key>
+						<dict>
+							<key>Path</key>
+							<string>Swift/Extensions/Reactive/ReactiveCollectionViewCell.swift</string>
+							<key>Group</key>
+							<array>
+								<string>Extensions</string>
+								<string>Reactive</string>
+							</array>
+						</dict>
+						<key>Extensions/Reactive/ReactiveTableViewCell.swift</key>
+						<dict>
+							<key>Path</key>
+							<string>Swift/Extensions/Reactive/ReactiveTableViewCell.swift</string>
 							<key>Group</key>
 							<array>
 								<string>Extensions</string>
@@ -559,6 +657,15 @@ end
 							<key>PathType</key>
 							<string>Group</string>
 						</dict>
+						<key>Protocols/StoryboardInitializable.swift</key>
+						<dict>
+							<key>Path</key>
+							<string>Swift/Protocols/StoryboardInitializable.swift</string>
+							<key>Group</key>
+							<array>
+								<string>Protocols</string>
+							</array>
+						</dict>
 						<key>Scenes/BaseViewController.swift</key>
 						<dict>
 							<key>Path</key>
@@ -575,16 +682,6 @@ end
 							<key>Group</key>
 							<array>
 								<string>Scenes</string>
-							</array>
-						</dict>
-						<key>Services/Local/DataStore.swift</key>
-						<dict>
-							<key>Path</key>
-							<string>Swift/Services/Local/DataStore.swift</string>
-							<key>Group</key>
-							<array>
-								<string>Services</string>
-								<string>Local</string>
 							</array>
 						</dict>
 						<key>Services/Network/PaginationAPI.swift</key>
@@ -607,7 +704,7 @@ end
 								<string>Network</string>
 							</array>
 						</dict>
-						<key>Services/Network/JSON Mapper/Error+Extension.swift</key>
+						<key>Services/Network/JSONMapper/Error+Extension.swift</key>
 						<dict>
 							<key>Path</key>
 							<string>Swift/Services/Network/JSON Mapper/Error+Extension.swift</string>
@@ -618,7 +715,7 @@ end
 								<string>JSON Mapper</string>
 							</array>
 						</dict>
-						<key>Services/Network/JSON Mapper/ObjecMapper+Transform.swift</key>
+						<key>Services/Network/JSONMapper/ObjecMapper+Transform.swift</key>
 						<dict>
 							<key>Path</key>
 							<string>Swift/Services/Network/JSON Mapper/ObjecMapper+Transform.swift</string>
@@ -629,7 +726,7 @@ end
 								<string>JSON Mapper</string>
 							</array>
 						</dict>
-						<key>Services/Network/JSON Mapper/ObjectMapper+RxMoya.swift</key>
+						<key>Services/Network/JSONMapper/ObjectMapper+RxMoya.swift</key>
 						<dict>
 							<key>Path</key>
 							<string>Swift/Services/Network/JSON Mapper/ObjectMapper+RxMoya.swift</string>
@@ -706,15 +803,15 @@ end
 								<string>Targets</string>
 							</array>
 						</dict>
-						<key>Stubbed Responses</key>
+						<key>StubbedResponses</key>
 						<dict>
 							<key>Path</key>
-							<string>Swift/Stubbed Responses</string>
+							<string>Swift/StubbedResponses</string>
 							<key>PathType</key>
 							<string>Group</string>
 							<key>Group</key>
 							<array>
-								<string>Stubbed Responses</string>
+								<string>StubbedResponses</string>
 							</array>
 						</dict>
 						<key>Resources/Fonts</key>
@@ -808,6 +905,7 @@ end
 					<array>
 						<string>../.swiftlint.yml</string>
 						<string>../Podfile</string>
+						<string>Application/Info.plist</string>
 						<string>Info.plist:NSPhotoLibraryUsageDescription</string>
 						<string>Info.plist:NSCameraUsageDescription</string>
 						<string>Info.plist:NSAppTransportSecurity</string>
@@ -822,16 +920,22 @@ end
 						<string>Libraries</string>
 						<string>Extensions/SwiftStdlib/DateExtensions.swift</string>
 						<string>Extensions/SwiftStdlib/StringExtensions.swift</string>
-						<string>Extensions/UIKit/UIScrollViewExtensions.swift</string>
+						<string>Extensions/UIKit/UICollectionViewExtensions.swift</string>
 						<string>Extensions/UIKit/UIImageViewExtensions.swift</string>
-						<string>Extensions/Reactive/ReactiveExtensions.swift</string>
+						<string>Extensions/UIKit/UIColorExtensions.swift</string>
+						<string>Extensions/UIKit/UITableViewExtensions.swift</string>
+						<string>Extensions/UIKit/UITextFieldExtensions.swift</string>
+						<string>Extensions/UIKit/UIWindowExtensions.swift</string>
+						<string>Extensions/Reactive/ReactiveCollectionViewCell.swift</string>
+						<string>Extensions/Reactive/ReactiveTableViewCell.swift</string>
 						<string>Models/User.swift</string>
+						<string>Protocols/StoryboardInitializable.swift</string>
 						<string>Services/Local/DataStore.swift</string>
 						<string>Services/Network/PaginationAPI.swift</string>
 						<string>Services/Network/TokenKeychainStore.swift</string>
-						<string>Services/Network/JSON Mapper/Error+Extension.swift</string>
-						<string>Services/Network/JSON Mapper/ObjecMapper+Transform.swift</string>
-						<string>Services/Network/JSON Mapper/ObjectMapper+RxMoya.swift</string>
+						<string>Services/Network/JSONMapper/Error+Extension.swift</string>
+						<string>Services/Network/JSONMapper/ObjecMapper+Transform.swift</string>
+						<string>Services/Network/JSONMapper/ObjectMapper+RxMoya.swift</string>
 						<string>Services/Network/Models/AccessToken.swift</string>
 						<string>Services/Network/Models/ServerError.swift</string>
 						<string>Services/Network/Plugins/NetworkErrorLogger.swift</string>
@@ -840,7 +944,7 @@ end
 						<string>Services/Network/Targets/APITargetType.swift</string>
 						<string>Scenes/BaseViewController.swift</string>
 						<string>Scenes/ApplicationNavigationController.swift</string>
-						<string>Stubbed Responses</string>
+						<string>StubbedResponses</string>
 						<string>Resources/Fonts</string>
 						<string>Resources/Strings</string>
 						<string>Resources/Assets.xcassets</string>

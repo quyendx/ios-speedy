@@ -3,13 +3,9 @@ excluded:
   - ___VARIABLE_productName___/Libraries
   - ___VARIABLE_productName___/Extensions
 disabled_rules:
+  - todo
   - line_length
   - trailing_whitespace
-  - unused_optional_binding
-  - identifier_name
-  - private_outlet
-  - trailing_closure
-  - large_tuple
 opt_in_rules:
   - force_cast
   - type_name
@@ -21,31 +17,29 @@ opt_in_rules:
   - redundant_nil_coalescing
   - nimble_operator
   - operator_usage_whitespace
-  - closure_end_indentation
   - first_where
-  - object_literal
-  - number_separator
   - fatal_error_message
   - let_var_whitespace
-  - vertical_parameter_alignment_on_call
-operator_whitespace:
+cyclomatic_complexity:
+ignores_case_statements: true
+identifier_name:
+  max_length:
+    warning: 45
+    error: 60
+  min_length:
+    warning: 1
+type_name:
   excluded:
-    - ==
+    - T
+    - E
+    - D
+    - P
 type_body_length:
   warning: 300
   error: 400
 file_length:
   warning: 800
   error: 1200
+file_header: error
 force_cast: warning
-force_try:
-  severity: warning
-number_separator:
-  minimum_length: 5
-reporter: "xcode"
-custom_rules:
-  localized_lensing:
-    name: "Localized Lensing"
-    regex: '\.~\s+Strings\s*\.'
-    message: "Capture calls to `Strings` functions using `%~ { _ in Strings... }`"
-    severity: error
+force_try: warning

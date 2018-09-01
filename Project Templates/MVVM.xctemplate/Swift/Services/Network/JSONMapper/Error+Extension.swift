@@ -49,19 +49,19 @@ extension Swift.Error {
             if let serverError = moyaError.serverError {
                 return serverError.detail
             }
-            
+
             switch moyaError {
             case .underlying(let error):
                 return error.0.localizedDescription
-                
+
             default:
                 return localizedDescription
             }
-            
+
         case is ActionError:
             let actionError = self as! ActionError
             return actionError.message
-            
+
         default:
             return localizedDescription
         }

@@ -18,4 +18,13 @@ public extension Date {
 
         return dateFormatter.string(from: self).appending("Z")
     }
+
+    /// SwifterSwift: Check if date is within the current week.
+    public var isInCurrentWeek: Bool {
+        return Calendar.current.isDate(self, equalTo: Date(), toGranularity: .weekOfYear)
+    }
+
+    public var isInHour: Bool {
+        return Calendar.current.isDate(self, equalTo: Date(), toGranularity: .hour)
+    }
 }

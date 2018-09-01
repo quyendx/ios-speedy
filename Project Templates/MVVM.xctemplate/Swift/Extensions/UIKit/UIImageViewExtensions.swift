@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import PINRemoteImage
 
 public extension UIImageView {
     /// Make image view blurry
@@ -26,7 +25,12 @@ public extension UIImageView {
 		imgView.blur(withStyle: style)
 		return imgView
 	}
+}
 
+#if canImport(PINRemoteImage)
+import PINRemoteImage
+
+extension UIImageView {
     /// Async set image from url string
     public func pin_setImage(_ urlString: String?, placeholderImage: UIImage? = nil, completion: ((_ image: UIImage?) -> Void)? = nil) {
         guard let urlString = urlString, let url = URL(string: urlString) else {
@@ -41,5 +45,6 @@ public extension UIImageView {
         })
 
     }
-    
 }
+
+#endif

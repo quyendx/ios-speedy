@@ -24,7 +24,7 @@ struct NetworkErrorTransformPlugin: PluginType {
             do {
                 let serverError = try response.mapObject(ServerError.self)
                 return Result.failure(MoyaError.underlying(serverError, response))
-                
+
             } catch {
                 return Result.failure(MoyaError.underlying(error, response))
             }

@@ -7,7 +7,7 @@
 //
 
 struct Configuration {
-    
+
 }
 
 struct ___PROJECTNAME___ClientAPIKeys {
@@ -16,7 +16,7 @@ struct ___PROJECTNAME___ClientAPIKeys {
         static let clientID = ""
         static let clientSecret = ""
 
-    #elseif STAGGING
+    #elseif STAGING
         static let basePath = ""
         static let clientID = ""
         static let clientSecret = ""

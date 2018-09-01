@@ -16,10 +16,10 @@ class APIProvider<Target> where Target: Moya.TargetType {
     private let provider: MoyaProvider<Target>
 
     init(endpointClosure: @escaping MoyaProvider<Target>.EndpointClosure = MoyaProvider.defaultEndpointMapping,
-         requestClosure: @escaping MoyaProvider<Target>.RequestClosure = MoyaProvider.defaultRequestMapping,
+         requestClosure: @escaping MoyaProvider<Target>.RequestClosure = MoyaProvider<Target>.defaultRequestMapping,
          stubClosure: @escaping MoyaProvider<Target>.StubClosure = MoyaProvider.neverStub,
          manager: Manager = MoyaProvider<Target>.defaultAlamofireManager(),
-         plugins: [PluginType] = [],
+         plugins: [PluginType] = [NetworkLoggerPlugin(), NetworkErrorTransformPlugin()],
          trackInflights: Bool = false,
          online: Observable<Bool> = .just(true)) {
 
@@ -34,7 +34,7 @@ class APIProvider<Target> where Target: Moya.TargetType {
             .take(1)
             .flatMap { _ in
                 return actualRequest
-            }
+        }
     }
 }
 
